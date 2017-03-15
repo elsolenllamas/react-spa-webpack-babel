@@ -1,26 +1,41 @@
-var webpack = require('webpack');
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
 
-var BUILD_DIR = path.resolve(__dirname, 'src/public');
-var APP_DIR = path.resolve(__dirname, 'src/app');
+// env
+const buildDirectory = './dist/';
 
-var config = {
-
-  entry: APP_DIR + '/index.jsx',
-  output: {
-    path: BUILD_DIR,
-    filename: 'bundle.js'
+module.exports = {
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
   },
-  
-  module : {
-    loaders : [
-      {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel'
-      }
-    ]
-  }
+  entry: './src/app/index.js',
+  devServer: {
+    hot: true,
+    inline: true,
+    port: 7700,
+    historyApiFallback: true,
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
+  output: {
+    path: path.resolve(buildDirectory),
+    filename: 'bundle.js',
+    publicPath: 'http://localhost:7700/dist',
+  },
+  module: {
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /bower_components/,
+      loader: 'babel',
+      query: {
+        presets: ['react', 'es2015', 'stage-0'],
+      },
+    }],
+  },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(true),
+  ],
 };
-
-module.exports = config;
