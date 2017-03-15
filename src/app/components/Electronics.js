@@ -10,7 +10,9 @@ render() {
 	return (
 			<div>
 				<Header />
-	            <h1>Electronics</h1>
+				<div className="container">
+	            	<h1>Electronics</h1>
+	            </div>
 	        </div>
         );
 
