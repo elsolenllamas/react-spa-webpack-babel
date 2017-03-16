@@ -13,7 +13,8 @@ export default class Author extends React.Component {
 		console.log(this.props);
 		this.getAuthor = this.getAuthor.bind(this);
    		this.state = {
-      		author: ItemStore.getAllAuthorData()
+      		author: ItemStore.getAllAuthorData(),
+      		loaded: false
    		};
  	}
 
@@ -29,7 +30,8 @@ export default class Author extends React.Component {
 
  	getAuthor() {
 	    this.setState({
-	      author: ItemStore.getAllAuthorData()
+	      author: ItemStore.getAllAuthorData(),
+	      loaded:true
 	    });
   	}
 
@@ -37,7 +39,9 @@ export default class Author extends React.Component {
 
 		const { author } = this.state;
 
-		console.log(this.state);
+		if(!this.state.loaded) {
+        return (<div>Loading...</div>);
+   		}
 		return(
 			<div>
 				<Header />
@@ -47,10 +51,10 @@ export default class Author extends React.Component {
 						return(
 						<div className="col-sm-12 book-container" key={index}> 
 							<div className="row">
-								<div className="col-xs-1">
-									
+								<div className="col-xs-3 col-sm-1">
+									<img src={'http://covers.openlibrary.org/b/id/' + item.cover_i + '-S.jpg'}/>
 								</div>
-								<div className="col-xs-11">
+								<div className="col-xs-9 col-sm-11">
 									<span><strong>{ item.title }</strong></span>
 									<span className="clearfix"> ({item.first_publish_year})</span>
 								</div>
