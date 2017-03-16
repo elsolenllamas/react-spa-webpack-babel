@@ -48,7 +48,7 @@ export default class Author extends React.Component {
 						<div className="col-sm-12 book-container" key={index}> 
 							<div className="row">
 								<div className="col-xs-1">
-									<img src={'http://covers.openlibrary.org/b/isbn/' + item.isbn[0] +'-S.jpg'}/>
+									
 								</div>
 								<div className="col-xs-11">
 									<span><strong>{ item.title }</strong></span>
