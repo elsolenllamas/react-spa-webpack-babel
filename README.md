@@ -2,6 +2,8 @@
 
 ## Using Webpack, React, and Babel
 
+check deployed demo working at http://react-books-api.herokuapp.com/
+
 Once you get the packages declared on package.json via npm install, 
 you need to run the command: "npm run dev:hot" and go to http://localhost:7700/dist in your browser.
 
