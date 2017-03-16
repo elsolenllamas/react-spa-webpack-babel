@@ -17,3 +17,20 @@ export function loadBooks(){
         })
 }
 
+
+export function loadAuthor(name){
+    return axios.get('http://openlibrary.org/search.json?author=' + name)
+        .then((response) => {
+        	console.log(response.data.docs);
+	        dispatcher.dispatch({
+	        	type: "GET_AUTHOR",
+	        	author: response.data.docs
+	        })
+        })
+        .catch((err) => {
+        	dispatcher.dispatch({
+	        	type: "GET_AUTHOR_ERROR",
+	        	err
+	        })
+        })
+}

@@ -44,9 +44,9 @@ export default class Books extends React.Component {
 					{ books.map((item, index) => {
 						return(
 						<div className="col-sm-3" key={index}> 
-							<a href={"https://openlibrary.org" + item.key}>
+							<Link to={"/author/" + item.name}>
 								{ item.name } 
-							</a>
+							</Link>
 						</div>
 						)
 					})

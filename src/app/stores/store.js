@@ -5,10 +5,15 @@ class ItemStore extends EventEmitter {
 	constructor() {
 		super()
 		this.books = [];
+		this.author = [];
 	}
 
 	getAll() {
 	    return this.books;
+	}
+
+	getAllAuthorData() {
+	    return this.author;
 	}
 
 	handleActions(action) {
@@ -20,6 +25,12 @@ class ItemStore extends EventEmitter {
 			}
 
 			case "GET_BOOKS_ERROR": {
+				break;
+			}
+
+			case "GET_AUTHOR": {
+				this.author = action.author;
+				this.emit("change");
 				break;
 			}
 		}
